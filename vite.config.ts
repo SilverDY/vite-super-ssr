@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
 import svgr from 'vite-plugin-svgr';
+import checker from 'vite-plugin-checker';
 
 const rootPath = __dirname;
 
@@ -29,6 +30,9 @@ export default defineConfig({
       babel: {
         plugins: ['@emotion/babel-plugin'],
       },
+    }),
+    checker({
+      typescript: true,
     }),
     eslint(),
     svgr(),

@@ -43,6 +43,7 @@
     "reset-css": "^5.0.1",
     "serve-static": "^1.15.0",
     "ts-node": "^10.9.1",
+    "vite-plugin-checker": "^0.4.9",
     "vite-plugin-svgr": "^2.2.1"
   },
   "devDependencies": {
