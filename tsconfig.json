@@ -24,15 +24,6 @@
       "~app": ["./app"],
       "~app/*": ["./app/*"],
 
-      "~features": ["./features"],
-      "~features/*": ["./features/*"],
-
-      "~entities": ["./entities"],
-      "~entities/*": ["./entities/*"],
-
-      "~pages": ["./pages"],
-      "~pages/*": ["./pages/*"],
-
       "~shared": ["./shared"],
       "~shared/*": ["./shared/*"]
     }
