@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "module": "ES2022",
+    "target": "ES2017",
+    "moduleResolution": "Node",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "jsx": "react-jsx",
+    "useDefineForClassFields": true,
+    "baseUrl": "./src",
+    "paths": {
+      "~app": ["./app"],
+      "~app/*": ["./app/*"],
+
+      "~features": ["./features"],
+      "~features/*": ["./features/*"],
+
+      "~entities": ["./entities"],
+      "~entities/*": ["./entities/*"],
+
+      "~pages": ["./pages"],
+      "~pages/*": ["./pages/*"],
+
+      "~shared": ["./shared"],
+      "~shared/*": ["./shared/*"]
+    }
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
