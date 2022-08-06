@@ -29,10 +29,10 @@ The list of features:
 // build development
 yarn start 
 
-//build development client only
+// build development client only
 yarn start:client
 
-//build production
+// build production
 yarn build
 ```
 
