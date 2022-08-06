@@ -7,7 +7,7 @@
     "yarn": "^1.22.0"
   },
   "scripts": {
-    "start": "nodemon --watch src/app/server.ts --watch src/app/entries/server.tsx --exec 'yarn node --experimental-specifier-resolution=node --loader ts-node/esm src/app/server.ts'",
+    "start": "nodemon --watch src/app/server.ts --watch src/app/entries/server.tsx --exec 'yarn node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm src/app/server.ts'",
     "start:client": "vite --config vite.config.ts dev",
     "build": "tsc && vite build",
     "preview": "vite preview",
