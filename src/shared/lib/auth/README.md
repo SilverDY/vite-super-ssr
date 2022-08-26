@@ -1,0 +1,1 @@
+The library is a fork of [react-auth-kit](https://authkit.arkadip.me/v2.1.0/) with added support of SSR

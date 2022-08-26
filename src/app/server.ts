@@ -1,18 +1,22 @@
-import fs from 'fs';
-import path from 'path';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import express from 'express';
 import chalk from 'chalk';
-import createEmotionServer from '@emotion/server/create-instance';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { loadEnv } from 'vite';
+import { renderPage } from 'vite-plugin-ssr';
 
-import { createEmotionCache } from '../shared/lib/utils';
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = __dirname + '/../../';
 
-const isTest = process.env.NODE_ENV === 'test';
-const port: number = Number(process.env.PORT) || 5173;
+const mode = process.env.NODE_ENV || 'development';
+const viteEnv = loadEnv(mode, rootDir + '/./envs');
+process.env = { ...process.env, ...viteEnv };
 
-process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop';
+const isTest = process.env.NODE_ENV === 'test';
+const port: number = Number(process.env.VITE_PORT) || 8500;
 
 async function createServer(
   root = process.cwd(),
@@ -20,8 +24,6 @@ async function createServer(
   hmrPort?: number
 ) {
   const resolve = (p: string) => path.resolve(root, p);
-
-  const indexProd = isProd ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8') : '';
 
   const app = express();
   /**
@@ -62,40 +64,30 @@ async function createServer(
     );
   }
 
-  app.use('*', async (req: any, res: any) => {
-    const emotionCache = createEmotionCache();
+  app.use(cors());
 
+  app.use(cookieParser());
+
+  app.use('*', async (req, res, next) => {
     try {
-      const url = req.originalUrl;
-      const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-        createEmotionServer(emotionCache);
+      const pageContextInit: any = {
+        urlOriginal: req.originalUrl,
+        redirectTo: null,
+        cookies: req.cookies,
+        protocol: req.protocol,
+        hostname: req.hostname,
+      };
 
-      let template;
-      let render;
+      const pageContext = await renderPage(pageContextInit);
+      const { httpResponse, redirectTo } = pageContext;
 
-      if (!isProd) {
-        // always read fresh template in dev
-        template = fs.readFileSync(resolve('index.html'), 'utf-8');
-        template = await vite.transformIndexHtml(url, template);
-        render = (await vite.ssrLoadModule('/src/app/entries/server.tsx')).render;
+      if (redirectTo) {
+        res.redirect(307, redirectTo);
+      } else if (!httpResponse) {
+        return next();
       } else {
-        template = indexProd;
-        // @ts-ignore
-        render = (await import('../../dist/server/entry-server.js')).render;
+        httpResponse.pipe(res);
       }
-
-      // const context: StaticRouterContext = {};
-      const appHtml = render(url, emotionCache);
-
-      // Grab the CSS from emotion
-      const emotionChunks = extractCriticalToChunks(appHtml);
-      const emotionCss = constructStyleTagsFromChunks(emotionChunks);
-
-      const html = template
-        .replace(`<!--app-html-->`, appHtml)
-        .replace(`<!--app-styles-->`, emotionCss);
-
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
       const error: Error = e as Error;
 
@@ -112,12 +104,34 @@ async function createServer(
 
 if (!isTest) {
   createServer(rootDir).then(({ app }) => {
-    app.listen(port, '0.0.0.0', () => {
-      // eslint-disable-next-line no-console
-      console.log(
-        `[${new Date().toISOString()}]`,
-        chalk.blue(`App is running: 🌎 http://localhost:${port}`)
-      );
-    });
+    app
+      .listen(port, '0.0.0.0', () => {
+        // eslint-disable-next-line no-console
+        console.log(
+          `[${new Date().toISOString()}]`,
+          chalk.blue(`App is running: 🌎 http://localhost:${port}`)
+        );
+      })
+      .on('error', (error: any) => {
+        if (error.syscall !== 'listen') {
+          throw error;
+        }
+
+        const isPipe = (portOrPipe: number) => Number.isNaN(portOrPipe);
+        const bind = isPipe(port) ? 'Pipe ' + port : 'Port ' + port;
+
+        switch (error.code) {
+          case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+          case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+          default:
+            throw error;
+        }
+      });
   });
 }

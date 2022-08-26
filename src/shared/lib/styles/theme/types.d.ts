@@ -1,33 +1,19 @@
 import '@mui/material/styles';
-
 declare module '@mui/material/styles' {
   type ThemeTypes = 'light';
-
-  interface Screens {
-    mobile: number;
-    mobileL: number;
-    tablet: number;
-    laptop: number;
-    laptopL: number;
-  }
-  interface ScreensOptions extends Partial<Screens> {}
 
   interface Sizes {
     header: number;
     navigation: number;
-    openedNavigation: number;
-    bottomNavigation: number;
   }
   interface SizesOptions extends Partial<Sizes> {}
 
   interface Theme {
     type: 'light' | 'dark';
-    screens: Screens;
     sizes: Sizes;
   }
   interface ThemeOptions {
     type?: 'light' | 'dark';
-    screens?: ScreensOptions;
     sizes?: SizesOptions;
   }
 
@@ -38,20 +24,14 @@ declare module '@mui/material/styles' {
     tooltip?: string;
   }
 
-  interface ZIndex {
-    content: number;
-    drawer: number;
-    appHeader: number;
-    sidebar: number;
-    modal: number;
-    tooltip: number;
+  interface TypeBackground {
+    custom: { 100: string };
   }
-  interface ZIndexOptions {
-    content: number;
-    drawer: number;
-    appHeader: number;
-    sidebar: number;
-    modal: number;
-    tooltip: number;
+
+  interface Typography {
+    pxToRem: (px: number) => string;
+  }
+  interface TypographyOptions {
+    pxToRem?: (px: number) => string;
   }
 }
