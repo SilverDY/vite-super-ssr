@@ -2,9 +2,10 @@
 /// <reference types="vite-plugin-svgr/client" />
 
 interface ImportMetaEnv {
+  readonly PORT: string;
   readonly VITE_STAND: string;
   readonly VITE_API_URL: string;
-  // more env variables...
+  readonly VITE_API_FILESTORAGE_URL: string;
 }
 
 interface ImportMeta {
@@ -22,3 +23,11 @@ type DeepPartial<T> = T extends object
   : T;
 
 type Component<P = any> = (props?: P) => JSX.Element;
+
+interface ComponentWithChild {
+  children: ReactNode;
+}
+
+interface ComponentWithChildren {
+  children: ReactNode | ReactNode[];
+}

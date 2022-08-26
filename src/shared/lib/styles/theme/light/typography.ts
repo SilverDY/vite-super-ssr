@@ -1,13 +1,11 @@
 export const typography = {
   htmlFontSize: 16,
-  // fontFamily: "'ff-meta-serif-web-pro','system-ui',serif",
   fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
   fontSize: 14,
   fontWeightLight: 300,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
   h1: {
-    // fontFamily: "'ff-meta-serif-web-pro','system-ui',serif",
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 300,
     fontSize: '6rem',
@@ -15,7 +13,6 @@ export const typography = {
     letterSpacing: '-0.01562em',
   },
   h2: {
-    // fontFamily: "'ff-meta-serif-web-pro','system-ui',serif",
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 300,
     fontSize: '3.75rem',
@@ -23,7 +20,6 @@ export const typography = {
     letterSpacing: '-0.00833em',
   },
   h3: {
-    // fontFamily: "'ff-meta-serif-web-pro','system-ui',serif",
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 400,
     fontSize: '3rem',
@@ -31,7 +27,6 @@ export const typography = {
     letterSpacing: '0em',
   },
   subtitle1: {
-    // fontFamily: "'ff-meta-serif-web-pro','system-ui',serif",
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 400,
     fontSize: '1rem',
@@ -39,7 +34,6 @@ export const typography = {
     letterSpacing: '0.00938em',
   },
   subtitle2: {
-    // fontFamily: "'ff-meta-serif-web-pro','system-ui',serif",
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 500,
     fontSize: '0.875rem',
@@ -47,5 +41,3 @@ export const typography = {
     letterSpacing: '0.00714em',
   },
 };
-
-export default typography;

@@ -150,7 +150,7 @@ module.exports = {
     'unicorn/no-zero-fractions': 2,
     'unicorn/prefer-includes': 2,
     'unicorn/prefer-text-content': 2,
-    'unicorn/import-index': 2,
+    'unicorn/import-index': 0,
     'unicorn/throw-new-error': 2,
 
     'react-hooks/rules-of-hooks': 'error',

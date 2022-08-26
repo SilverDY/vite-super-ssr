@@ -9,11 +9,10 @@ export const enLocale = {
   'common.buttons.back': 'Back',
   'common.buttons.continue': 'Continue',
   'common.buttons.add': 'Add',
-  'common.buttons.post': 'Post',
-  'common.buttons.preview': 'Preview',
   'common.buttons.skip': 'Skip',
+  'common.buttons.done': 'Done',
 
-  'common.validation.isRequired': '{name} is required',
+  'common.validation.isRequired': 'Field "{name}" is required',
   'common.validation.minLength': 'Minimum length: {length}',
   'common.validation.maxLength': 'Maximum length: {length}',
 };

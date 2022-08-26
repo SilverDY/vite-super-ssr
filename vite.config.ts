@@ -1,11 +1,15 @@
 import path from 'path';
 import fs from 'fs';
 
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
+import ssr from 'vite-plugin-ssr/plugin';
+
 import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
 import svgr from 'vite-plugin-svgr';
 import checker from 'vite-plugin-checker';
+import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
+import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 
 const rootPath = __dirname;
 
@@ -22,29 +26,36 @@ const srcAliases = srcDirs.reduce(
   {}
 );
 
-// https://vitejs.dev/config/
-/** @type {import('vite').UserConfig} */
-export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: ['@emotion/babel-plugin'],
-      },
-    }),
-    checker({
-      typescript: true,
-    }),
-    eslint(),
-    svgr(),
-  ],
-  server: { port: 3000 },
-  build: {
-    minify: false,
-  },
-  envDir: './envs',
-  resolve: {
-    alias: {
-      ...srcAliases,
+export default ({ mode }: { mode: string }) => {
+  const viteEnv = loadEnv(mode, './envs');
+  process.env = { ...process.env, ...viteEnv };
+
+  // https://vitejs.dev/config/
+  /** @type {import('vite').UserConfig} */
+  return defineConfig({
+    plugins: [
+      react({
+        babel: {
+          plugins: ['@emotion/babel-plugin', jotaiDebugLabel, jotaiReactRefresh],
+        },
+      }),
+      ssr(),
+      checker({
+        typescript: true,
+      }),
+      eslint(),
+      svgr(),
+    ],
+    server: { port: 8500 },
+    build: {
+      minify: false,
     },
-  },
-});
+    envDir: './envs',
+    resolve: {
+      alias: {
+        '@mui/icons-material': '@mui/icons-material/esm', // workaround from here https://github.com/mui/material-ui/issues/21377
+        ...srcAliases,
+      },
+    },
+  });
+};

@@ -1,0 +1,1 @@
+explanation - https://vite-plugin-ssr.com/pageContext-anywhere
