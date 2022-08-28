@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useSetViewer } from '~entities/viewer';
 import { api, createAuthenticatedRequestHandler } from '~shared/api';
@@ -12,18 +12,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const getToken = useAuthHeader();
   const token = getToken();
 
-  // add token for axios
   useMemo(() => {
+    // adds token for axios
     api.interceptors.request.use(createAuthenticatedRequestHandler(token));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, isAuth]);
 
-  useEffect(() => {
     if (isAuth()) {
       setViewer();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [token, isAuth]);
 
   return children;
 };
