@@ -11,7 +11,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon -e 'ts, tsx, js, jsx, mjs, json' --watch src/app/server.ts --exec 'yarn node --no-warnings --experimental-modules --es-module-specifier-resolution=node --experimental-import-meta-resolve --experimental-specifier-resolution=node --loader ts-node/esm src/app/server.ts'",
     "start:client": "vite --config vite.config.ts dev",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src --resolve-plugins-relative-to \"./src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint src --resolve-plugins-relative-to \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
