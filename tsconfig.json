@@ -46,5 +46,5 @@
     "transpileOnly": true,
     "esm": true,
     "experimentalSpecifierResolution": "node"
-}
+  }
 }

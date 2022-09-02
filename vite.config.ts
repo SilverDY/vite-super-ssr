@@ -46,10 +46,6 @@ export default ({ mode }: { mode: string }) => {
       eslint(),
       svgr(),
     ],
-    server: { port: 8500 },
-    build: {
-      minify: false,
-    },
     envDir: './envs',
     resolve: {
       alias: {
