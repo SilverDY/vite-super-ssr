@@ -1,7 +1,7 @@
 {
   "name": "vite-super-ssr",
   "author": "Dmitrii Serebrov",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
   "type": "module",
   "engines": {
@@ -12,8 +12,8 @@
     "start": "yarn server",
     "prod": "yarn build && yarn server:prod",
     "build": "vite build",
-    "server": "cross-env NODE_ENV=development nodemon -e 'ts, tsx, js, jsx, mjs, json' --watch src/app/server.ts --exec 'yarn node --no-warnings --loader ts-node/esm src/app/server.ts'",
-    "server:prod": "cross-env NODE_ENV=production nodemon -e 'ts, tsx, js, jsx, mjs, json' --exec 'yarn node --no-warnings --loader ts-node/esm src/app/server.ts'",
+    "server": "cross-env NODE_ENV=development nodemon -e 'ts, tsx, js, jsx, mjs, cjs, json' --watch src/app/server.ts --exec 'yarn node --no-warnings --loader ts-node/esm src/app/server.ts'",
+    "server:prod": "cross-env NODE_ENV=production nodemon --exec 'yarn node --no-warnings --loader ts-node/esm src/app/server.ts'",
     "lint": "eslint src --resolve-plugins-relative-to \"./src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint src --resolve-plugins-relative-to \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
@@ -22,11 +22,11 @@
     "src"
   ],
   "dependencies": {
-    "@emotion/cache": "^11.9.3",
-    "@emotion/css": "^11.9.0",
-    "@emotion/react": "^11.9.3",
-    "@emotion/server": "^11.4.0",
-    "@emotion/styled": "^11.9.3",
+    "@emotion/cache": "^11.10.1",
+    "@emotion/css": "^11.10.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.2",
     "@mui/lab": "^5.0.0-alpha.92",
     "@mui/material": "^5.9.2",
@@ -50,7 +50,6 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-streaming": "^0.2.20",
-    "recoil": "^0.7.4",
     "reset-css": "^5.0.1",
     "sirv": "^2.0.2",
     "ts-node": "^10.9.1",
