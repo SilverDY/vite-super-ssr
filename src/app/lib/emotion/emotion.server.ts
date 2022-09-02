@@ -1,7 +1,13 @@
-import createCache from '@emotion/cache';
-import createServer from '@emotion/server/create-instance';
+// import createCache from '@emotion/cache';
+// import createServer from '@emotion/server/create-instance';
 
-export const createEmotionServer = createServer as any;
+// @ts-ignore
+import createServer from '@emotion/server/create-instance/dist/emotion-server-create-instance.cjs.js';
+// @ts-ignore
+import emotionCreateCache from '@emotion/cache/dist/emotion-cache.cjs.js';
+
+export const createEmotionServer = createServer.default as any;
+const createCache = emotionCreateCache.default;
 
 const isBrowser = typeof document !== 'undefined';
 

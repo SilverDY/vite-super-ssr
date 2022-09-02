@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import { AppBar, Toolbar } from '@mui/material';
 
 import { Box, Stack, Typography } from '~shared/ui';
 import { useSignOut } from '~shared/lib/auth';

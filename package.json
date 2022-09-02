@@ -1,7 +1,7 @@
 {
   "name": "vite-super-ssr",
   "author": "Dmitrii Serebrov",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "license": "MIT",
   "type": "module",
   "engines": {
@@ -9,10 +9,11 @@
     "yarn": "^1.22.0"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon -e 'ts, tsx, js, jsx, mjs, json' --watch src/app/server.ts --exec 'yarn node --no-warnings --experimental-modules --es-module-specifier-resolution=node --experimental-import-meta-resolve --experimental-specifier-resolution=node --loader ts-node/esm src/app/server.ts'",
-    "start:client": "vite --config vite.config.ts dev",
+    "start": "yarn server",
+    "prod": "yarn build && yarn server:prod",
     "build": "vite build",
-    "preview": "vite preview",
+    "server": "cross-env NODE_ENV=development nodemon -e 'ts, tsx, js, jsx, mjs, json' --watch src/app/server.ts --exec 'yarn node --no-warnings --loader ts-node/esm src/app/server.ts'",
+    "server:prod": "cross-env NODE_ENV=production nodemon -e 'ts, tsx, js, jsx, mjs, json' --exec 'yarn node --no-warnings --loader ts-node/esm src/app/server.ts'",
     "lint": "eslint src --resolve-plugins-relative-to \"./src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint src --resolve-plugins-relative-to \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
@@ -51,7 +52,7 @@
     "react-streaming": "^0.2.20",
     "recoil": "^0.7.4",
     "reset-css": "^5.0.1",
-    "serve-static": "^1.15.0",
+    "sirv": "^2.0.2",
     "ts-node": "^10.9.1",
     "vite-plugin-checker": "^0.4.9",
     "vite-plugin-ssr": "^0.4.26",

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Toolbar from '@mui/material/Toolbar';
+import { Toolbar } from '@mui/material';
 
 import { AppHeader } from '~widgets/app-header';
 import { Navigation } from '~widgets/navigation';

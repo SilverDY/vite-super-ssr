@@ -1,3 +1,4 @@
 export { light } from './light';
 
-export * from '@mui/material/styles';
+export { styled, ThemeProvider, createTheme, createStyles, useTheme } from '@mui/material';
+export type { SxProps } from '@mui/material';

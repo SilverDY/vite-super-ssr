@@ -1,11 +1,11 @@
 import { FC, forwardRef } from 'react';
-import MaterialListItem, { ListItemProps } from '@mui/material/ListItem';
+import { ListItemProps, ListItem as MuiListItem } from '@mui/material';
 
 export type RippleContainerProps = ListItemProps;
 
 export const RippleContainer: FC<RippleContainerProps> = forwardRef(({ ...props }, ref) => {
   return (
-    <MaterialListItem
+    <MuiListItem
       button={true as any} //note: there is a bug in the Material ListItem component
       {...props}
       {...ref}

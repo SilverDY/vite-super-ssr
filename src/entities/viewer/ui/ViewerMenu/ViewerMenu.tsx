@@ -1,7 +1,6 @@
 import { FC, MouseEventHandler, useCallback, useState } from 'react';
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu, MenuItem } from '@mui/material';
 
 import { Avatar, IconButton } from '~shared/ui';
 import { FormattedMessage, provideTranslation } from '~shared/lib/l10n';

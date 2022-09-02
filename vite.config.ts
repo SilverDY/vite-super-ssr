@@ -53,7 +53,6 @@ export default ({ mode }: { mode: string }) => {
     envDir: './envs',
     resolve: {
       alias: {
-        '@mui/icons-material': '@mui/icons-material/esm', // workaround from here https://github.com/mui/material-ui/issues/21377
         ...srcAliases,
       },
     },

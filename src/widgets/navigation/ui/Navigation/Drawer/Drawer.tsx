@@ -1,12 +1,14 @@
 import { FC, ReactNode, useEffect, useMemo, useState } from 'react';
 
-import MuiDrawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemButton from '@mui/material/ListItemButton';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Drawer as MuiDrawer,
+  Toolbar,
+} from '@mui/material';
 
 import { Link, matchPath } from '~shared/lib/router';
 import { Box } from '~shared/ui';

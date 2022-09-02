@@ -4,10 +4,10 @@
     "**/*.spec.ts"
   ],
   "compilerOptions": {
-    "module": "ESNext",
-    "target": "ESNext",
+    "module": "ES2022",
+    "target": "ES2022",
     "moduleResolution": "Node",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -17,6 +17,7 @@
     "useDefineForClassFields": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
+    "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
       "~app": ["./app"],
@@ -43,5 +44,7 @@
   },
   "ts-node": {
     "transpileOnly": true,
-  }
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+}
 }
