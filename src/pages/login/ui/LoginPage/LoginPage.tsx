@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { Box } from '~shared/ui';
 import { Navigate, useNavigate } from '~shared/lib/router';
 import { useIsAuthenticated } from '~shared/lib/auth';
-import { SignInForm, SignUpForm, SignUpFormProps } from '~features/auth';
+import { SignInForm, SignInFormProps, SignUpForm, SignUpFormProps } from '~features/auth';
 
 import { useSetViewer } from '~entities/viewer';
 
@@ -23,11 +23,14 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
   const setViewer = useSetViewer();
   const [currentForm, setCurrentForm] = useState<LoginPageForm>('signIn');
 
-  const handleSignIn = useCallback(() => {
-    setViewer().then(() => {
-      navigate('/', { replace: true });
-    });
-  }, [navigate, setViewer]);
+  const handleSignIn: SignInFormProps['onSignIn'] = useCallback(
+    ({ token, type }) => {
+      setViewer({ token: `${type} ${token}` }).then(() => {
+        navigate('/', { replace: true });
+      });
+    },
+    [navigate, setViewer]
+  );
 
   const handleChangeForm = useCallback((payload: LoginPageForm) => {
     setCurrentForm(payload);
