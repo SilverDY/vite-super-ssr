@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import path from 'path';
 import fs from 'fs';
 
@@ -31,7 +33,6 @@ export default ({ mode }: { mode: string }) => {
   process.env = { ...process.env, ...viteEnv };
 
   // https://vitejs.dev/config/
-  /** @type {import('vite').UserConfig} */
   return defineConfig({
     plugins: [
       react({
@@ -51,6 +52,11 @@ export default ({ mode }: { mode: string }) => {
       alias: {
         ...srcAliases,
       },
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/shared/lib/test/setup.ts',
     },
   });
 };
